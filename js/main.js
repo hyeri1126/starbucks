@@ -1,21 +1,4 @@
-const searchEl = document.querySelector('.search');
-const searchInputEl = searchEl.querySelector('input');
 
-searchEl.addEventListener('click', function () {
-    searchInputEl.focus();
-});
-
-searchInputEl.addEventListener('focus', function() {
-    searchEl.classList.add('focused');
-    searchInputEl.setAttribute('placeholder', '통합검색');
-
-});
-
-searchInputEl.addEventListener('blur', function() {
-    searchEl.classList.remove('focused');
-    searchInputEl.setAttribute('placeholder', '');
-
-});
 
 const badgesEl = document.querySelector('header .badges');
 const toTopEl = document.querySelector('#to-top');
@@ -23,9 +6,9 @@ const toTopEl = document.querySelector('#to-top');
 
 
 
-window -> 프로젝트 화면! window에서 scroll하면 함수를 실행하는데 그 함수를 최대한 적게 실행하기 위해서
-throttle라는 lodash에서 제공하는 기능 도입! 
-scroll>500이면 헤더에 있는 badge를 숨기게 처리함!(display:none) -> 숨겨질 때 우측하단에 to-top버튼 나타나야함!
+// window -> 프로젝트 화면! window에서 scroll하면 함수를 실행하는데 그 함수를 최대한 적게 실행하기 위해서
+// throttle라는 lodash에서 제공하는 기능 도입! 
+// scroll>500이면 헤더에 있는 badge를 숨기게 처리함!(display:none) -> 숨겨질 때 우측하단에 to-top버튼 나타나야함!
  
 
 
@@ -38,7 +21,7 @@ window.addEventListener('scroll', _.throttle(function(){
             display : 'none'
         });
         //버튼 보이기
-        gsap.to( toTopEl,.2{
+        gsap.to( toTopEl,.2, {
             x: 100
 
         });
@@ -50,7 +33,7 @@ window.addEventListener('scroll', _.throttle(function(){
             display : 'block'
         });
         //버튼 숨기기
-        gsap.to(toTopEl,.2{
+        gsap.to(toTopEl,.2 ,{
             x: 100 //우측으로 사라짐 
 
         }); //to()안에 애니메이션을 제어하고자 하는 요소를 명시
@@ -58,11 +41,12 @@ window.addEventListener('scroll', _.throttle(function(){
 }, 300));
 //_.throttle(함수,시간)
 
-toTopEl.addEventListener('click', fuction() {
+toTopEl.addEventListener('click', function() {
     gsap.to(window, .7 ,{
         scrollTo: 0 //화면의 위치는 .7초동안 0px 지점으로 옮겨주겠다!
-    });
-});
+    })
+})
+
 
 //#to-top에 addEventListdner메소드(click,익명의함수) -> to-top이라는 elment를 클릭하면 익명의 함수를 실행하겠따. 
 //익명의 함수는 이벤트의 핸들러라고 부른다!
@@ -179,8 +163,7 @@ spyEls.forEach(function (spyEl) {
 
 
 
-const thisYear = document.querySelector('.this-year');
-thisYear.textContent = new Date().getFullYear(); //date 객체는 현재 날짜를 가지고 있음.
+
 
 //gsap 라이브러리는 기본적인 애니메이션을 충분히 많이 제공하지만 라이브러리 자체의 용량이 커져서 로드되는 시간이 오래걸림
 //일부기능분리!
